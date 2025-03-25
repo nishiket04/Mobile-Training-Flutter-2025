@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
+import 'package:flutter_task/material_widget/material_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      routes: {"/imageFontsView": (context) => const ImageFonts()},
+      routes: {
+        "/imageFontsView": (context) => const ImageFonts(),
+        "/materialWidgetView": (context) => const MaterialWidget()
+      },
     );
   }
 }
@@ -51,6 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/materialWidgetView');
+                },
+                child: Text("Material Widget Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              )
             ],
           ),
         ),
