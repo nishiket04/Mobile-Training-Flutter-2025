@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
       routes: {
         "/imageFontsView": (context) => const ImageFonts(),
-        "/materialWidgetView": (context) => const MaterialWidget()
+        "/materialWidgetView": (context) => const MaterialWidget(),
+        "/cupertinoView": (context) => const Cupertino()
       },
     );
   }
@@ -60,6 +62,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/materialWidgetView');
                 },
                 child: Text("Material Widget Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cupertinoView');
+                },
+                child: Text("Cupertino Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
