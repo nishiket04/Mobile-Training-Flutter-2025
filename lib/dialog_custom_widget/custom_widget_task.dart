@@ -18,7 +18,7 @@ class _CustomWidgetTask extends State<CustomWidgetTask> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('TabBar Sample'),
+            title: const Text('TabBar'),
             bottom: const TabBar(
               tabs: <Widget>[
                 Tab(icon: Icon(Icons.account_circle_outlined)),
