@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/dialog_custom_widget/custom_widget_task.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
+import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         "/cupertinoView": (context) => const Cupertino(),
         "/customWidgetView": (context) => const CustomWidgetTask(),
         "/textFiledAndFormView": (context) => const TextFieldAndForm(),
+        "/listViewGridView": (context) => const ListViewGridView(),
       },
     );
   }
@@ -93,6 +95,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/textFiledAndFormView');
                 },
                 child: Text("Text Filed and Form Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/listViewGridView');
+                },
+                child: Text("List View Grid View Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
