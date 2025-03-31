@@ -4,6 +4,7 @@ import 'package:flutter_task/dialog_custom_widget/custom_widget_task.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
 import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
+import 'package:flutter_task/navigation/navigation.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
 
 void main() {
@@ -22,14 +23,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
       routes: {
+        "/": (context) => const MyHomePage(title: "Flutter Demo Home Page"),
         "/imageFontsView": (context) => const ImageFonts(),
         "/materialWidgetView": (context) => const MaterialWidget(),
         "/cupertinoView": (context) => const Cupertino(),
         "/customWidgetView": (context) => const CustomWidgetTask(),
         "/textFiledAndFormView": (context) => const TextFieldAndForm(),
         "/listViewGridView": (context) => const ListViewGridView(),
+        "/navigationView": (context) => const Navigation(),
+        "/routePage": (context) => const RoutePage(),
       },
     );
   }
@@ -104,6 +107,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/listViewGridView');
                 },
                 child: Text("List View Grid View Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/navigationView');
+                },
+                child: Text("Navigation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
