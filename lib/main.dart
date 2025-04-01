@@ -5,6 +5,7 @@ import 'package:flutter_task/images_fonts/images_fonts_task.dart';
 import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/navigation/navigation.dart';
+import 'package:flutter_task/style/style.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
 
 void main() {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         "/listViewGridView": (context) => const ListViewGridView(),
         "/navigationView": (context) => const Navigation(),
         "/routePage": (context) => const RoutePage(),
+        "/styleView": (context) => const Style(),
       },
     );
   }
@@ -116,6 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/navigationView');
                 },
                 child: Text("Navigation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/styleView');
+                },
+                child: Text("Style Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
