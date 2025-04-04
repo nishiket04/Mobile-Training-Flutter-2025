@@ -102,7 +102,7 @@ class _StremsTask extends State<StremsTask> {
     );
   }
 
-  Widget _buildDilogBox({String name = "", String email = "", int? index = null,}) {
+  Widget _buildDilogBox({String name = "", String email = "", int? index,}) {
     _nameController.text = name.isNotEmpty ? name : "";
     _emailController.text = email.isNotEmpty ? email : "";
     return AlertDialog(

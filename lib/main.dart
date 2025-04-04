@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/dialog_custom_widget/custom_widget_task.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
+import 'package:flutter_task/isolates/isolates.dart';
 import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/navigation/navigation.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         "/routePage": (context) => const RoutePage(),
         "/styleView": (context) => const Style(),
         "/stremsView": (context) => const StremsTask(),
+        "/isolatesView": (context) => const IsolatesTask(),
       },
     );
   }
@@ -138,6 +140,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/stremsView');
                 },
                 child: Text("Streams Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/isolatesView');
+                },
+                child: Text("Isolates Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
