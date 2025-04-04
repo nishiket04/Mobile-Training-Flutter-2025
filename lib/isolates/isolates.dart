@@ -50,7 +50,6 @@ class _IsolatesTask extends State<IsolatesTask> {
   }
 
   void _onPressed() {
-    final resultPort = ReceivePort();
     if (_state == "Stop") {
       _isolate?.kill(priority: 0);
       setState(() {
@@ -61,6 +60,8 @@ class _IsolatesTask extends State<IsolatesTask> {
     setState(() {
       _state = "Stop";
     });
+
+    final resultPort = ReceivePort();
 
     Isolate.spawn(_isolateMain, [
       double.parse(_numberController.text),
@@ -78,7 +79,7 @@ class _IsolatesTask extends State<IsolatesTask> {
   }
 }
 
-Future<void> _isolateMain(dynamic arg) async {
+Future<void> _isolateMain(List<dynamic> arg) async {
   final resultPort = arg[1];
   final num = arg[0];
   double sum = 0.0;
