@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/Cupertino/cupertino_task.dart';
+import 'package:flutter_task/animation/animation_task.dart';
 import 'package:flutter_task/dialog_custom_widget/custom_widget_task.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
 import 'package:flutter_task/isolates/isolates.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         "/styleView": (context) => const Style(),
         "/stremsView": (context) => const StremsTask(),
         "/isolatesView": (context) => const IsolatesTask(),
+        "/animationView": (context) => const AnimationTask(),
       },
     );
   }
@@ -149,6 +151,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/isolatesView');
                 },
                 child: Text("Isolates Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/animationView');
+                },
+                child: Text("Animation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
