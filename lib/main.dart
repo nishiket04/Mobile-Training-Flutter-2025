@@ -9,6 +9,7 @@ import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/navigation/navigation.dart';
 import 'package:flutter_task/strems/strems.dart';
 import 'package:flutter_task/style/style.dart';
+import 'package:flutter_task/task_json/seralization_task.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
 
 void main() {
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         "/stremsView": (context) => const StremsTask(),
         "/isolatesView": (context) => const IsolatesTask(),
         "/animationView": (context) => const AnimationTask(),
+        "/jsonView": (context) => const SeralizationTask(),
       },
     );
   }
@@ -160,6 +162,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/animationView');
                 },
                 child: Text("Animation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/jsonView');
+                },
+                child: Text("Json Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
