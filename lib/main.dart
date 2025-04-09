@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/animation/animation_task.dart';
+import 'package:flutter_task/custom_paint/custom_paint.dart';
 import 'package:flutter_task/dialog_custom_widget/custom_widget_task.dart';
 import 'package:flutter_task/images_fonts/images_fonts_task.dart';
 import 'package:flutter_task/isolates/isolates.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         "/isolatesView": (context) => const IsolatesTask(),
         "/animationView": (context) => const AnimationTask(),
         "/jsonView": (context) => const SeralizationTask(),
+        "/customPaintView": (context) => const CustomPaintTask(),
       },
     );
   }
@@ -171,6 +173,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushNamed(context, '/jsonView');
                 },
                 child: Text("Json Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/customPaintView');
+                },
+                child: Text("Custom Paint Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                 ),
