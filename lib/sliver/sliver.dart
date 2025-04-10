@@ -10,11 +10,13 @@ class SliverTask extends StatefulWidget {
 
 class _SliverTask extends State<SliverTask> {
   late int _count;
+
   @override
   void initState() {
     super.initState();
     _count = 10;
   }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -33,32 +35,31 @@ class _SliverTask extends State<SliverTask> {
     );
   }
 
-  Widget _buildReadyToHireBar(){
-    return SliverPersistentHeader(
-      pinned: true,
-      delegate: _ReadyToHire(),
+  Widget _buildReadyToHireBar() {
+    return SliverPersistentHeader(pinned: true, delegate: _ReadyToHire());
+  }
+
+  Widget _buildFAB() {
+    return FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          _count++;
+        });
+      },
+      child: Icon(Icons.add),
     );
   }
 
-  Widget _buildFAB(){
-    return FloatingActionButton(onPressed: () {
-      setState(() {
-        _count++;
-      });
-    },child: Icon(Icons.add),);
-  }
-
-  Widget _buildItemList(){
+  Widget _buildItemList() {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-            (context, index) =>
-            ListTile(title: Text('List Item $index')),
+        (context, index) => ListTile(title: Text('List Item $index')),
         childCount: _count,
       ),
     );
   }
 
-  Widget _buildAppBar(){
+  Widget _buildAppBar() {
     return SliverAppBar.large(
       stretch: true,
       expandedHeight: 200,
@@ -69,28 +70,42 @@ class _SliverTask extends State<SliverTask> {
       actions: [
         Icon(Icons.notifications, color: Colors.white),
         SizedBox.fromSize(size: Size(10, 0)),
-        ClipOval(
-          child: Image(image: AssetImage("assets/images/usa_flag.png")),
-        ),
+        ClipOval(child: Image(image: AssetImage("assets/images/usa_flag.png"))),
       ],
-      flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image(
-              image: AssetImage("assets/images/restaurent_food.jpg"),
-              fit: BoxFit.fill,
-            ),
-            _buildAppBarContent(),
-          ],
-        ),
-      ),
+      flexibleSpace: _buildSpaceBar(),
       floating: true,
       pinned: true,
     );
   }
 
-  Widget _buildCardList(){
+  Widget _buildSpaceBar() {
+    return FlexibleSpaceBar(
+      background: Stack(
+        fit: StackFit.expand,
+        children: [_buildBGImage(), _buildGradiant(), _buildAppBarContent()],
+      ),
+    );
+  }
+
+  Widget _buildBGImage() {
+    return Image(
+      image: AssetImage("assets/images/restaurent_food.jpg"),
+      fit: BoxFit.fill,
+    );
+  }
+
+  Widget _buildGradiant() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black, Colors.transparent],
+          transform: GradientRotation(30),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCardList() {
     return SliverToBoxAdapter(
       child: SizedBox(
         height: 120,
@@ -105,14 +120,20 @@ class _SliverTask extends State<SliverTask> {
     );
   }
 
-  Widget _card(int index){
-    return Card(color:Colors.white,margin: EdgeInsets.all(10),child: Center(child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text("$index",style: TextStyle(color: Colors.black),),
-    )),);
+  Widget _card(int index) {
+    return Card(
+      color: Colors.white,
+      margin: EdgeInsets.all(10),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("$index", style: TextStyle(color: Colors.black)),
+        ),
+      ),
+    );
   }
 
-  Widget _buildLogo(){
+  Widget _buildLogo() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipOval(
@@ -121,18 +142,16 @@ class _SliverTask extends State<SliverTask> {
     );
   }
 
-  Widget _buildSearchBar(){
+  Widget _buildSearchBar() {
     return TextField(
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white, width: 2),
-        ),
+        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
         prefixIcon: Icon(Icons.search, color: Colors.white),
       ),
     );
   }
 
-  Widget _buildAppBarContent(){
+  Widget _buildAppBarContent() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       spacing: 5,
@@ -141,24 +160,32 @@ class _SliverTask extends State<SliverTask> {
           alignment: Alignment.bottomLeft,
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: Text("Good Morning! Nishiket👋",style: TextStyle(color: Colors.white),),
+            child: Text(
+              "Good Morning! Nishiket👋",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: Text("Do You Need Help?",style: TextStyle(color: Colors.white),),
+            child: Text(
+              "Do You Need Help?",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
-            padding: const EdgeInsets.only(
-              left: 8.0,
-              right: 8.0,
-              bottom: 8.0,
-            ),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
             child: _buildSearchBar(),
           ),
         ),
@@ -169,17 +196,21 @@ class _SliverTask extends State<SliverTask> {
 
 class _ReadyToHire extends SliverPersistentHeaderDelegate {
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
-      decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blue,Colors.green])),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [Colors.blue, Colors.green]),
+      ),
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text("Ready To Hire?"),
-          ElevatedButton(onPressed: () {
-            
-          }, child: Text("Get Started?"))
+          ElevatedButton(onPressed: () {}, child: Text("Get Started?")),
         ],
       ),
     );
