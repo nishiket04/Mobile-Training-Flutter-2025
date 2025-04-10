@@ -8,6 +8,7 @@ import 'package:flutter_task/isolates/isolates.dart';
 import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/navigation/navigation.dart';
+import 'package:flutter_task/sliver/sliver.dart';
 import 'package:flutter_task/strems/strems.dart';
 import 'package:flutter_task/style/style.dart';
 import 'package:flutter_task/task_json/seralization_task.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         "/animationView": (context) => const AnimationTask(),
         "/jsonView": (context) => const SeralizationTask(),
         "/customPaintView": (context) => const CustomPaintTask(),
+        "/sliverView": (context) => const SliverTask(),
       },
     );
   }
@@ -62,131 +64,142 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/imageFontsView');
-                },
-                child: Text("Image And Fonts Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/imageFontsView');
+                  },
+                  child: Text("Image And Fonts Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/materialWidgetView');
-                },
-                child: Text("Material Widget Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/materialWidgetView');
+                  },
+                  child: Text("Material Widget Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/cupertinoView');
-                },
-                child: Text("Cupertino Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cupertinoView');
+                  },
+                  child: Text("Cupertino Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/customWidgetView');
-                },
-                child: Text("Custom Widget Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/customWidgetView');
+                  },
+                  child: Text("Custom Widget Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/textFiledAndFormView');
-                },
-                child: Text("Text Filed and Form Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/textFiledAndFormView');
+                  },
+                  child: Text("Text Filed and Form Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/listViewGridView');
-                },
-                child: Text("List View Grid View Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/listViewGridView');
+                  },
+                  child: Text("List View Grid View Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/navigationView');
-                },
-                child: Text("Navigation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/navigationView');
+                  },
+                  child: Text("Navigation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/styleView');
-                },
-                child: Text("Style Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/styleView');
+                  },
+                  child: Text("Style Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/stremsView');
-                },
-                child: Text("Streams Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/stremsView');
+                  },
+                  child: Text("Streams Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/isolatesView');
-                },
-                child: Text("Isolates Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/isolatesView');
+                  },
+                  child: Text("Isolates Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/animationView');
-                },
-                child: Text("Animation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/animationView');
+                  },
+                  child: Text("Animation Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/jsonView');
-                },
-                child: Text("Json Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/jsonView');
+                  },
+                  child: Text("Json Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/customPaintView');
-                },
-                child: Text("Custom Paint Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/customPaintView');
+                  },
+                  child: Text("Custom Paint Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
                 ),
-              ),
-            ],
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sliverView');
+                  },
+                  child: Text("Sliver Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
