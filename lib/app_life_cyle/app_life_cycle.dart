@@ -13,7 +13,7 @@ class AppLifeCycleTask extends StatefulWidget {
 class _AppLifeCycleTask extends State<AppLifeCycleTask>
     with WidgetsBindingObserver {
   Timer? timer;
-  bool isActive = true;
+  // bool isActive = true;
   int sec = 0;
 
   @override
@@ -48,7 +48,7 @@ class _AppLifeCycleTask extends State<AppLifeCycleTask>
     timer = Timer.periodic(
       const Duration(seconds: 1),
           (timer) {
-        if (isActive && mounted) {
+        if (mounted) {
           setState(() {
             sec ++;
           });
