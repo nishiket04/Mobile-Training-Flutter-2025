@@ -11,6 +11,7 @@ import 'package:flutter_task/navigation/navigation.dart';
 import 'package:flutter_task/sliver/sliver.dart';
 import 'package:flutter_task/strems/strems.dart';
 import 'package:flutter_task/style/style.dart';
+import 'package:flutter_task/task_json/cart_json.dart';
 import 'package:flutter_task/task_json/seralization_task.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
 
@@ -62,6 +63,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    CartJson.storeData();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(

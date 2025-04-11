@@ -1,5 +1,7 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class CartJson{
-  static final json = """[
+  static final _json = """[
   {
 	"product_id": 101,
 	"product_name": "Wireless Headphones",
@@ -72,4 +74,15 @@ class CartJson{
   }
 ]
 """;
+
+  static Future<void> storeData() async{
+    var pref = await SharedPreferences.getInstance();
+    pref.setString("cart_data", _json);
+  }
+
+  static Future<String> getJson() async{
+    var pref = await SharedPreferences.getInstance();
+    var json = await pref.getString("cart_data");
+    return json??"";
+  }
 }
