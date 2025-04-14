@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_task/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/animation/animation_task.dart';
@@ -14,6 +16,8 @@ import 'package:flutter_task/style/style.dart';
 import 'package:flutter_task/task_json/cart_json.dart';
 import 'package:flutter_task/task_json/seralization_task.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
+
+import 'app_life_cyle/app_life_cycle.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,6 +52,7 @@ class MyApp extends StatelessWidget {
         "/jsonView": (context) => const SeralizationTask(),
         "/customPaintView": (context) => const CustomPaintTask(),
         "/sliverView": (context) => const SliverTask(),
+        "/appLifeCycleView": (context) => const AppLifeCycleTask(),
       },
     );
   }
@@ -200,6 +205,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.pushNamed(context, '/sliverView');
                   },
                   child: Text("Sliver Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/appLifeCycleView');
+                  },
+                  child: Text("App Life Cycle Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                   ),
