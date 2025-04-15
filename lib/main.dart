@@ -10,6 +10,7 @@ import 'package:flutter_task/isolates/isolates.dart';
 import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
 import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/navigation/navigation.dart';
+import 'package:flutter_task/responsive_adptive/task_responsive.dart';
 import 'package:flutter_task/sliver/sliver.dart';
 import 'package:flutter_task/strems/strems.dart';
 import 'package:flutter_task/style/style.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         "/customPaintView": (context) => const CustomPaintTask(),
         "/sliverView": (context) => const SliverTask(),
         "/appLifeCycleView": (context) => const AppLifeCycleTask(),
+        "/responsiveView": (context) => const Responsive(),
       },
     );
   }
@@ -214,6 +216,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.pushNamed(context, '/appLifeCycleView');
                   },
                   child: Text("App Life Cycle Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/responsiveView');
+                  },
+                  child: Text("Responsive Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                   ),
