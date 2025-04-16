@@ -12,15 +12,21 @@ import 'package:flutter_task/material_widget/material_widget.dart';
 import 'package:flutter_task/navigation/navigation.dart';
 import 'package:flutter_task/responsive_adptive/task_responsive.dart';
 import 'package:flutter_task/sliver/sliver.dart';
+import 'package:flutter_task/sqlite/note_model.dart';
+import 'package:flutter_task/sqlite/notes.dart';
 import 'package:flutter_task/strems/strems.dart';
 import 'package:flutter_task/style/style.dart';
 import 'package:flutter_task/task_json/cart_json.dart';
 import 'package:flutter_task/task_json/seralization_task.dart';
 import 'package:flutter_task/text_filed_form/text_field_form.dart';
-
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'app_life_cyle/app_life_cycle.dart';
 
-void main() {
+void main() async{
+  await Hive.initFlutter();
+  Hive.registerAdapter(NoteModelAdapter());
+  Hive.openBox<NoteModel>('notes');
   runApp(const MyApp());
 }
 
@@ -55,6 +61,7 @@ class MyApp extends StatelessWidget {
         "/sliverView": (context) => const SliverTask(),
         "/appLifeCycleView": (context) => const AppLifeCycleTask(),
         "/responsiveView": (context) => const Responsive(),
+        "/sqliteView": (context) => const Notes(),
       },
     );
   }
@@ -225,6 +232,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.pushNamed(context, '/responsiveView');
                   },
                   child: Text("Responsive Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sqliteView');
+                  },
+                  child: Text("Sqlite Task", textAlign: TextAlign.center,style: TextStyle(color: Colors.black87),),
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.cyan),
                   ),
