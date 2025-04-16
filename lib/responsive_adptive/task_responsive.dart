@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/responsive_adptive/card.dart';
-import 'package:flutter_task/responsive_adptive/responsive_card.dart';
 import 'package:flutter_task/responsive_adptive/responsive_form.dart';
 
 class Responsive extends StatefulWidget {

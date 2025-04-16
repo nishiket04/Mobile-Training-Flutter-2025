@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/task_json/cart_widget.dart';
 
 class SliverTask extends StatefulWidget {
   const SliverTask({super.key});

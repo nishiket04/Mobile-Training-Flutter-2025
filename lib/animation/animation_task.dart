@@ -27,6 +27,7 @@ class _AnimationTask extends State<AnimationTask>
                 if(value!=null&&value.isEmpty){
                  return "Enter Item Name";
                 }
+                return null;
               },
               controller: _itemController,
               decoration: InputDecoration(hintText: "Enter Name"),
