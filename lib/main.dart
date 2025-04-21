@@ -1,27 +1,27 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_task/Cupertino/cupertino_task.dart';
-import 'package:flutter_task/animation/animation_task.dart';
-import 'package:flutter_task/custom_paint/custom_paint.dart';
-import 'package:flutter_task/dialog_custom_widget/custom_widget_task.dart';
-import 'package:flutter_task/images_fonts/images_fonts_task.dart';
-import 'package:flutter_task/isolates/isolates.dart';
-import 'package:flutter_task/list_view_grid_view/ListViewGridView.dart';
-import 'package:flutter_task/material_widget/material_widget.dart';
-import 'package:flutter_task/navigation/navigation.dart';
-import 'package:flutter_task/responsive_adptive/task_responsive.dart';
-import 'package:flutter_task/sliver/sliver.dart';
-import 'package:flutter_task/sqlite/note_model.dart';
-import 'package:flutter_task/sqlite/notes.dart';
-import 'package:flutter_task/strems/strems.dart';
-import 'package:flutter_task/style/style.dart';
-import 'package:flutter_task/task_json/cart_json.dart';
-import 'package:flutter_task/task_json/seralization_task.dart';
-import 'package:flutter_task/text_filed_form/text_field_form.dart';
+import 'package:flutter_task/presntation/Cupertino/cupertino_task.dart';
+import 'package:flutter_task/presntation/animation/animation_task.dart';
+import 'package:flutter_task/presntation/app_life_cyle/app_life_cycle.dart';
+import 'package:flutter_task/presntation/custom_paint/custom_paint.dart';
+import 'package:flutter_task/presntation/dialog_custom_widget/custom_widget_task.dart';
+import 'package:flutter_task/presntation/images_fonts/images_fonts_task.dart';
+import 'package:flutter_task/presntation/isolates/isolates.dart';
+import 'package:flutter_task/presntation/list_view_grid_view/ListViewGridView.dart';
+import 'package:flutter_task/presntation/material_widget/material_widget.dart';
+import 'package:flutter_task/presntation/navigation/navigation.dart';
+import 'package:flutter_task/presntation/responsive_adptive/task_responsive.dart';
+import 'package:flutter_task/presntation/sliver/sliver.dart';
+import 'package:flutter_task/presntation/sqlite/note_model.dart';
+import 'package:flutter_task/presntation/sqlite/notes.dart';
+import 'package:flutter_task/presntation/strems/strems.dart';
+import 'package:flutter_task/presntation/style/style.dart';
+import 'package:flutter_task/presntation/task_json/cart_json.dart';
+import 'package:flutter_task/presntation/task_json/seralization_task.dart';
+import 'package:flutter_task/presntation/text_filed_form/text_field_form.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'app_life_cyle/app_life_cycle.dart';
 
 void main() async{
   await Hive.initFlutter();

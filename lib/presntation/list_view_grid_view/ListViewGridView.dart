@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_task/list_view_grid_view/GridTask.dart';
-import 'package:flutter_task/list_view_grid_view/ListTask.dart';
+
+import 'GridTask.dart';
+import 'ListTask.dart';
 
 class ListViewGridView extends StatefulWidget {
   const ListViewGridView({super.key});

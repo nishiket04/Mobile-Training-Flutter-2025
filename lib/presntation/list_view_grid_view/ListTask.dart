@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_task/list_view_grid_view/DummyData.dart';
+import 'DummyData.dart';
 
 class ListTask extends StatelessWidget {
   final _persons = DummyData.getData();

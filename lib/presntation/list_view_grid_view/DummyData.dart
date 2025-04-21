@@ -1,4 +1,4 @@
-import 'package:flutter_task/list_view_grid_view/PersonModel.dart';
+import 'PersonModel.dart';
 
 class DummyData{
   static final List<PersonModel> _persons = [];

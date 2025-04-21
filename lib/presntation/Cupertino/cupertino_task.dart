@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_task/Cupertino/profile_page.dart';
+import 'package:flutter_task/presntation/Cupertino/profile_page.dart';
 
 class Cupertino extends StatefulWidget {
   const Cupertino({super.key});

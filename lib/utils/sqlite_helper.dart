@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
-import 'note_filed.dart';
-import 'note_model.dart';
+import '../presntation/sqlite/note_filed.dart';
+import '../presntation/sqlite/note_model.dart';
 
 class SqliteHelper{
   static final SqliteHelper instance = SqliteHelper._internal();

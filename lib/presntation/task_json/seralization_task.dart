@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_task/task_json/cart.dart';
-import 'package:flutter_task/task_json/cart_json.dart';
-import 'package:flutter_task/task_json/cart_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'cart.dart';
+import 'cart_json.dart';
+import 'cart_widget.dart';
 
 class SeralizationTask extends StatefulWidget {
   const SeralizationTask({super.key});

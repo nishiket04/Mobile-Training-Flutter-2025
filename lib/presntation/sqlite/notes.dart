@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/sqlite/sqlite_helper.dart';
 import 'package:hive/hive.dart';
 
+import '../../utils/sqlite_helper.dart';
 import 'note_model.dart';
 
 class Notes extends StatefulWidget {

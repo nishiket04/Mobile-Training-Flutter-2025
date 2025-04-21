@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_task/strems/PersonsModel.dart';
+
+import 'PersonsModel.dart';
 
 class StremsTask extends StatefulWidget {
   const StremsTask({super.key});

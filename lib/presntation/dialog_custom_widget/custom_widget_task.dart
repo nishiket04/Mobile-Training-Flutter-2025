@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_task/dialog_custom_widget/profile_details_widget.dart';
+import 'package:flutter_task/presntation/dialog_custom_widget/profile_details_widget.dart';
 
 class CustomWidgetTask extends StatefulWidget {
   const CustomWidgetTask({super.key});

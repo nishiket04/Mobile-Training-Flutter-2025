@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/responsive_adptive/responsive_card.dart';
+import 'package:flutter_task/presntation/responsive_adptive/responsive_card.dart';
 
 class CardResonsive extends StatelessWidget {
   const CardResonsive({super.key});

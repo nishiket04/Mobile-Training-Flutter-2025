@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/responsive_adptive/feedback_form.dart';
+
+import 'feedback_form.dart';
 
 class ResponsiveForm extends StatefulWidget {
   const ResponsiveForm({super.key});
