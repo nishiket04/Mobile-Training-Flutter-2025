@@ -6,6 +6,9 @@ import 'package:flutter_task/presntation/animation/animation_task.dart';
 import 'package:flutter_task/presntation/app_life_cyle/app_life_cycle.dart';
 import 'package:flutter_task/presntation/custom_paint/custom_paint.dart';
 import 'package:flutter_task/presntation/dialog_custom_widget/custom_widget_task.dart';
+import 'package:flutter_task/presntation/event_bus/bindngs/event_bus_binding.dart';
+import 'package:flutter_task/presntation/event_bus/view/event_bus_task.dart';
+import 'package:flutter_task/presntation/event_bus/event_init.dart';
 import 'package:flutter_task/presntation/getX_dio/binding/signup_binding.dart';
 import 'package:flutter_task/presntation/getX_dio/binding/update_profile_binding.dart';
 import 'package:flutter_task/presntation/getX_dio/binding/user_details_binding.dart';
@@ -54,7 +57,8 @@ class MyApp extends StatelessWidget {
         SharedPrefHelper.init();
         Get.putAsync(() async => await DioUtils());
         Get.putAsync(() async => await HttpUtils());
-      },
+        Get.putAsync(() async => await EventInit(),);
+        },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -98,6 +102,11 @@ class MyApp extends StatelessWidget {
           name: "/updateProfile",
           page: () => UpdateProfileScreen(),
           binding: UpdateProfileBinding(),
+        ),
+        GetPage(
+          name: "/eventBusView",
+          page: () => EventBusTaskState(),
+          binding: EventBusBinding(),
         ),
       ],
     );
@@ -360,7 +369,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   },
                   child: Text(
-                    "Sqlite Task",
+                    "GetX,Dio and Http Task",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed("eventBusView");
+                  },
+                  child: Text(
+                    "Event Bus Task",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.black87),
                   ),
