@@ -24,7 +24,7 @@ class UpdateProfileScreen extends GetView<UpdateProfileController> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Text("Hive:"),
+          Text("Http:"),
           Obx(
             () => Switch(
               value: controller.isHttp.value,

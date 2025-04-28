@@ -24,7 +24,7 @@ class UserDetailsScreen extends GetView<UserDetailsController> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Text("Hive:"),
+          Text("Http:"),
           Obx(
             () => Switch(
               value: controller.isHttp.value,
