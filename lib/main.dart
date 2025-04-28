@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_task/presntation/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/presntation/animation/animation_task.dart';
 import 'package:flutter_task/presntation/app_life_cyle/app_life_cycle.dart';
@@ -18,6 +19,8 @@ import 'package:flutter_task/presntation/getX_dio/view/user_details_screen.dart'
 import 'package:flutter_task/presntation/images_fonts/images_fonts_task.dart';
 import 'package:flutter_task/presntation/isolates/isolates.dart';
 import 'package:flutter_task/presntation/list_view_grid_view/ListViewGridView.dart';
+import 'package:flutter_task/presntation/localization/localization_task.dart';
+import 'package:flutter_task/presntation/localization/localnotifyer.dart';
 import 'package:flutter_task/presntation/material_widget/material_widget.dart';
 import 'package:flutter_task/presntation/navigation/navigation.dart';
 import 'package:flutter_task/presntation/responsive_adptive/task_responsive.dart';
@@ -35,7 +38,10 @@ import 'package:flutter_task/utils/shared_pref_helper.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'utils/app_localizations.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -50,65 +56,75 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      initialRoute: "/",
-      onInit: (){
-        SharedPrefHelper.init();
-        Get.putAsync(() async => await DioUtils());
-        Get.putAsync(() async => await HttpUtils());
-        Get.putAsync(() async => await EventInit(),);
-        },
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return ChangeNotifierProvider(
+      create: (context) => LocaleModel(),
+      child: Consumer<LocaleModel>(
+        builder:
+            (context, localeModel, child) => GetMaterialApp(
+              title: 'Flutter Demo',
+              locale: localeModel.locale,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              initialRoute: "/",
+              onInit: () {
+                SharedPrefHelper.init();
+                Get.putAsync(() async => await DioUtils());
+                Get.putAsync(() async => await HttpUtils());
+                Get.putAsync(() async => await EventInit());
+              },
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              ),
+              routes: {
+                "/imageFontsView": (context) => const ImageFonts(),
+                "/materialWidgetView": (context) => const MaterialWidget(),
+                "/cupertinoView": (context) => const Cupertino(),
+                "/customWidgetView": (context) => const CustomWidgetTask(),
+                "/textFiledAndFormView": (context) => const TextFieldAndForm(),
+                "/listViewGridView": (context) => const ListViewGridView(),
+                "/navigationView": (context) => const Navigation(),
+                "/routePage": (context) => const RoutePage(),
+                "/styleView": (context) => const Style(),
+                "/stremsView": (context) => const StremsTask(),
+                "/isolatesView": (context) => const IsolatesTask(),
+                "/animationView": (context) => const AnimationTask(),
+                "/jsonView": (context) => const SeralizationTask(),
+                "/customPaintView": (context) => const CustomPaintTask(),
+                "/sliverView": (context) => const SliverTask(),
+                "/appLifeCycleView": (context) => const AppLifeCycleTask(),
+                "/responsiveView": (context) => const Responsive(),
+                "/sqliteView": (context) => const Notes(),
+                "/localization": (context) => LocalizationTask(),
+              },
+              getPages: [
+                GetPage(
+                  name: "/",
+                  page: () => const MyHomePage(title: "Flutter Demo Home Page"),
+                ),
+                GetPage(
+                  name: "/signupUser",
+                  page: () => SignupScreen(),
+                  binding: SignUpBinding(),
+                ),
+                GetPage(
+                  name: "/userDetails",
+                  page: () => UserDetailsScreen(),
+                  binding: UserDetailsBinding(),
+                ),
+                GetPage(
+                  name: "/updateProfile",
+                  page: () => UpdateProfileScreen(),
+                  binding: UpdateProfileBinding(),
+                ),
+                GetPage(
+                  name: "/eventBusView",
+                  page: () => EventBusTaskState(),
+                  binding: EventBusBinding(),
+                ),
+              ],
+            ),
       ),
-      routes: {
-        "/imageFontsView": (context) => const ImageFonts(),
-        "/materialWidgetView": (context) => const MaterialWidget(),
-        "/cupertinoView": (context) => const Cupertino(),
-        "/customWidgetView": (context) => const CustomWidgetTask(),
-        "/textFiledAndFormView": (context) => const TextFieldAndForm(),
-        "/listViewGridView": (context) => const ListViewGridView(),
-        "/navigationView": (context) => const Navigation(),
-        "/routePage": (context) => const RoutePage(),
-        "/styleView": (context) => const Style(),
-        "/stremsView": (context) => const StremsTask(),
-        "/isolatesView": (context) => const IsolatesTask(),
-        "/animationView": (context) => const AnimationTask(),
-        "/jsonView": (context) => const SeralizationTask(),
-        "/customPaintView": (context) => const CustomPaintTask(),
-        "/sliverView": (context) => const SliverTask(),
-        "/appLifeCycleView": (context) => const AppLifeCycleTask(),
-        "/responsiveView": (context) => const Responsive(),
-        "/sqliteView": (context) => const Notes(),
-      },
-      getPages: [
-        GetPage(
-          name: "/",
-          page: () => const MyHomePage(title: "Flutter Demo Home Page"),
-        ),
-        GetPage(
-          name: "/signupUser",
-          page: () => SignupScreen(),
-          binding: SignUpBinding(),
-        ),
-        GetPage(
-          name: "/userDetails",
-          page: () => UserDetailsScreen(),
-          binding: UserDetailsBinding(),
-        ),
-        GetPage(
-          name: "/updateProfile",
-          page: () => UpdateProfileScreen(),
-          binding: UpdateProfileBinding(),
-        ),
-        GetPage(
-          name: "/eventBusView",
-          page: () => EventBusTaskState(),
-          binding: EventBusBinding(),
-        ),
-      ],
     );
   }
 }
@@ -361,10 +377,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: (){
+                  onPressed: () {
                     if (SharedPrefHelper.getString("authToken") == "") {
                       Get.toNamed("/signupUser");
-                    }else{
+                    } else {
                       Get.toNamed("/userDetails");
                     }
                   },
@@ -383,6 +399,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   child: Text(
                     "Event Bus Task",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/localization");
+                  },
+                  child: Text(
+                    "Localization Task",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.black87),
                   ),
