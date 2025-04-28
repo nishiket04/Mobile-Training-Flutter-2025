@@ -1,6 +1,9 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_task/presntation/Cupertino/cupertino_task.dart';
 import 'package:flutter_task/presntation/animation/animation_task.dart';
@@ -23,6 +26,7 @@ import 'package:flutter_task/presntation/localization/localization_task.dart';
 import 'package:flutter_task/presntation/localization/localnotifyer.dart';
 import 'package:flutter_task/presntation/material_widget/material_widget.dart';
 import 'package:flutter_task/presntation/navigation/navigation.dart';
+import 'package:flutter_task/presntation/notification/notification_task.dart';
 import 'package:flutter_task/presntation/responsive_adptive/task_responsive.dart';
 import 'package:flutter_task/presntation/sliver/sliver.dart';
 import 'package:flutter_task/presntation/sqlite/note_model.dart';
@@ -41,12 +45,30 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'firebase_options.dart';
 import 'utils/app_localizations.dart';
 
-void main() async {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  const AndroidInitializationSettings initializationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
   Hive.openBox<NoteModel>('notes');
+
   runApp(const MyApp());
 }
 
@@ -96,6 +118,7 @@ class MyApp extends StatelessWidget {
                 "/responsiveView": (context) => const Responsive(),
                 "/sqliteView": (context) => const Notes(),
                 "/localization": (context) => LocalizationTask(),
+                "/notificationView": (context) => const NotificationTask(),
               },
               getPages: [
                 GetPage(
@@ -412,6 +435,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   child: Text(
                     "Localization Task",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.cyan),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/notificationView");
+                  },
+                  child: Text(
+                    "Notification Task",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.black87),
                   ),
