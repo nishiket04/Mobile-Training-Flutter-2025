@@ -16,4 +16,8 @@ class RegX{
   static bool isNumberValid(String number) {
     return RegExp(r'^[0-9]+$').hasMatch(number);
   }
+
+  static bool isPinNumberValid(String number) {
+    return RegExp(r'^[0-9]+$').hasMatch(number);
+  }
 }

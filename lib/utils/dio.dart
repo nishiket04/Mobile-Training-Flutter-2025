@@ -8,7 +8,8 @@ class DioUtils extends GetxService {
   String _token = '';
 
   final Dio _dio = Dio(
-    BaseOptions(baseUrl: "https://api-uapsnap.venko.info/api/v1/"),
+    // BaseOptions(baseUrl: "https://api-uapsnap.venko.info/api/v1/"),
+    BaseOptions(baseUrl: "https://api-stag.trulot.in/v1"),
   );
 
   DioUtils() {
@@ -38,7 +39,7 @@ class DioUtils extends GetxService {
   Future<void> addToken() async {
     _token = await SharedPrefHelper.getString("authToken");
     _dio.options.headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': "Bearer $_token",
     };
   }
@@ -58,18 +59,46 @@ class DioUtils extends GetxService {
     }
   }
 
-  Future<dynamic> post(String endPoint, Map<String, dynamic> data) async {
+  Future<dynamic> post(String endPoint, [Map<String, dynamic>? data]) async {
     Response response;
     try {
       response = await _dio.post(endPoint, data: data);
+      if (response.headers['authorization_token']?.isNotEmpty??false) {
+        await SharedPrefHelper.setString(
+          "authToken",
+          response.headers['authorization_token']?.first??"",
+        );
+        await Get.find<DioUtils>().addToken();
+      }
       return response.data;
     } on DioException catch (e) {
-      Get.showSnackbar(
-        GetSnackBar(
-          message: SignupModel.fromJson(e.response?.data).message,
-          duration: Duration(seconds: 3),
-        ),
+      // Get.showSnackbar(
+      //   GetSnackBar(
+      //     message: SignupModel.fromJson(e.response?.data).message,
+      //     duration: Duration(seconds: 3),
+      //   ),
+      // );
+    }
+  }
+
+  Future<dynamic> postImage(String endPoint, MultipartFile multipartFile) async{
+    Response response;
+    try {
+      FormData formData = FormData();
+      formData.files.add(MapEntry("profile", multipartFile));
+      response = await _dio.post(
+        endPoint,
+        data: formData,
+        options: Options(headers: {'Content-type': 'multipart/form-data'}),
       );
+      return response.data;
+    } on DioException catch (e) {
+      // Get.showSnackbar(
+      //   GetSnackBar(
+      //     message: SignupModel.fromJson(e.response?.data).message,
+      //     duration: Duration(seconds: 3),
+      //   ),
+      // );
     }
   }
 

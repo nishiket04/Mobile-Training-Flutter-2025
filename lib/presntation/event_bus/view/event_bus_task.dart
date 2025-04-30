@@ -81,18 +81,18 @@ class EventBusTaskState extends GetView<EventBusController> {
                 child: Text("Fire Data"),
               ),
               Text("Recived Data"),
-              CircleAvatar(
+              Obx(() => CircleAvatar(
                 backgroundImage:
-                    controller.imgR != null
-                        ? FileImage(File(controller.imgR.value!.path))
-                        : NetworkImage(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s",
-                            )
-                            as ImageProvider,
+                controller.imgR != null
+                    ? FileImage(File(controller.imgR.value!.path))
+                    : NetworkImage(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s",
+                )
+                as ImageProvider,
                 radius: 60,
-              ),
-              Text("Name: ${controller.name.value}"),
-              Text("Email: ${controller.email.value}"),
+              ),),
+              Obx(() => Text("Name: ${controller.name.value}"),),
+              Obx(() => Text("Email: ${controller.email.value}"),),
             ],
           ),
         ),
