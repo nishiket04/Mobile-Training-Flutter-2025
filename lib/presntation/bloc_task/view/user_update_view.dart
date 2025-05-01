@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_task/network/model/login_trulot.dart';
 import 'package:flutter_task/presntation/bloc_task/bloc/profile_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,8 +15,10 @@ class UserUpdateView extends StatefulWidget {
 }
 
 class _UserUpdateView extends State<UserUpdateView> {
+  LogInTruLotModel? model;
   @override
   Widget build(BuildContext context) {
+    model = ModalRoute.of(context)!.settings.arguments as LogInTruLotModel;
     return BlocProvider(
       create: (context) => ProfileBloc(),
       child: Scaffold(
@@ -51,7 +54,10 @@ class _UserUpdateView extends State<UserUpdateView> {
 
         if (state is ProfileImageSelected) {
           avatarImage = FileImage(state.file);
-        } else {
+        }else if(model?.data?.profile != null && model!.data!.profile!.isNotEmpty){
+          avatarImage = NetworkImage(model?.data?.profile??"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s");
+        }
+        else {
           avatarImage = const NetworkImage(
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s",
           );

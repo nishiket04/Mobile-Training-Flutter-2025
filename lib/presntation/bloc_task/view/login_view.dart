@@ -79,7 +79,7 @@ class _LoginViewState extends State<LoginView> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(model.meta?.message ?? "Login Successful")),
           );
-          Navigator.popAndPushNamed(context, "/userdetailView");
+          Navigator.popAndPushNamed(context, "/userdetailView",arguments: model);
         } else if (state is LoginFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.logInTruLotModel.meta?.message ?? "Login failed")),
